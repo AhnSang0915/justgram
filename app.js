@@ -58,10 +58,29 @@ const createUser = (req, res) => {
     res.json({message:"userCreated"})
 }
 
+const createPost = (req, res) => {
+    const post = req.body.data
+    console.log(post)
+
+    posts.push(
+        {
+            id : post.id,
+            title : post.title,
+            content : post.content,
+            userId : post.userId
+        }
+    )
+
+    console.log('after', posts)
+
+    res.json({message:'postCreated'})
+}
+
 const app = express()
 app.use(express.json())
 
 app.post('/signup', createUser)
+app.post('/post', createPost)
 
 const server = http.createServer(app)
 
